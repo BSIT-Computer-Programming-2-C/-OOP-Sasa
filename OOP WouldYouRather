@@ -1,0 +1,124 @@
+﻿using System;
+
+namespace WouldYouRather
+{
+    public interface CollegeStudent
+    {
+        void AskQuestions();
+    }
+
+    public class ITStudent : CollegeStudent
+    {
+        public void AskQuestions()
+        {
+            Console.WriteLine("What type of IT profession do you want to have in the future?");
+            Console.WriteLine("A. Game Developer");
+            Console.WriteLine("B. Software Developer");
+            Console.WriteLine("C. Web Developer");
+            string choice = Console.ReadLine()?.ToUpper();
+
+            switch (choice)
+            {
+                case "A":
+                    Console.WriteLine("Good luck with developing games!");
+                    break;
+                case "B":
+                    Console.WriteLine("Nice! Hope you can make a great software in the future!");
+                    break;
+                case "C":
+                    Console.WriteLine("Hope you can make a great website!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    public class BSBAStudent : CollegeStudent
+    {
+        public void AskQuestions()
+        {
+            Console.WriteLine("What type of business would you like to own after graduating?");
+            Console.WriteLine("A. A Grocery");
+            Console.WriteLine("B. A Clothing Store");
+            Console.WriteLine("C. A Restaurant");
+            string choice = Console.ReadLine()?.ToUpper();
+
+            switch (choice)
+            {
+                case "A":
+                    Console.WriteLine("Hope it'll grow into a supermarket!");
+                    break;
+                case "B":
+                    Console.WriteLine("Hey, you probably have some great drip!");
+                    break;
+                case "C":
+                    Console.WriteLine("Maybe you can find a good cook with your HM student buddies!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    public class HMStudent : CollegeStudent
+    {
+        public void AskQuestions()
+        {
+            Console.WriteLine("What type of profession would you specialize in?");
+            Console.WriteLine("A. A Baker");
+            Console.WriteLine("B. A Kitchen Staff at a Cruise Ship");
+            Console.WriteLine("C. A Hotel Staff");
+            string choice = Console.ReadLine()?.ToUpper();
+
+            switch (choice)
+            {
+                case "A":
+                    Console.WriteLine("You'd probably make some nice bread!");
+                    break;
+                case "B":
+                    Console.WriteLine("Hope you can handle yourself at sea while working!");
+                    break;
+                case "C":
+                    Console.WriteLine("Hey, can you valet my car? Just kidding, haha!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    public class Questionnaire
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Would You Rather!");
+            Console.WriteLine("Would you rather?:");
+            Console.WriteLine("1. Be an IT Student?");
+            Console.WriteLine("2. Be a BSBA Student?");
+            Console.WriteLine("3. Be an HM Student?");
+            Console.Write("Enter your choice: ");
+            string choice = Console.ReadLine();
+
+            CollegeStudent student = choice switch
+            {
+                "1" => new ITStudent(),
+                "2" => new BSBAStudent(),
+                "3" => new HMStudent(),
+                _ => null
+            };
+
+            if (student != null)
+            {
+                student.AskQuestions();
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please restart the program and enter a valid choice.");
+            }
+        }
+    }
+}
